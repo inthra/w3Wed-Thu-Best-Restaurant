@@ -42,4 +42,11 @@ public class CuisineTest {
     Cuisine secondType = new Cuisine("BBQ");
     assertTrue(firstType.equals(secondType));
   }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    assertTrue(Cuisine.all().get(0).equals(testCuisine));
+  }
 }

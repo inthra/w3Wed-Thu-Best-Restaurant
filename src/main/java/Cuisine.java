@@ -22,12 +22,22 @@ public class Cuisine {
   }
 
   @Override
-  public boolean equals (Object otherCuisine) {
+  public boolean equals(Object otherCuisine) {
     if (!(otherCuisine instanceof Cuisine)) {
       return false;
     } else {
       Cuisine newCuisine = (Cuisine) otherCuisine;
       return this.getType().equals(newCuisine.getType());
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO cuisines(cuisine_type) VALUES (:cuisine_type)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("cuisine_type", this.cuisine_type)
+        .executeUpdate()
+        .getKey();
     }
   }
 }
