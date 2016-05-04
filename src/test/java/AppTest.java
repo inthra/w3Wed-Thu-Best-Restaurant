@@ -5,8 +5,8 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class AppTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
@@ -40,5 +40,14 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Find the best restaurants!");
     assertThat(pageSource()).contains("View Cuisine List");
     assertThat(pageSource()).contains("Add a New Cuisine");
+  }
+
+  @Test
+  public void cuisineIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add a New Cuisine"));
+    fill("#cuisine_type").with("BBQ");
+    submit(".btn");
+    assertThat(pageSource()).contains("Your cuisine has been saved.");
   }
 }
