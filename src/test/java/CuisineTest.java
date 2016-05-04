@@ -65,4 +65,16 @@ public class CuisineTest {
     Cuisine savedCuisine = Cuisine.find(testCuisine.getId());
     assertTrue(testCuisine.equals(savedCuisine));
   }
+
+  @Test
+  public void getRestaurants_retrievesAllRestaurantsFromDatabase_restaurantsList() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    Restaurant firstRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", testCuisine.getId());
+    firstRestaurant.save();
+    Restaurant secondRestaurant = new Restaurant("Sticky Fingers", "Saucy sauce", testCuisine.getId());
+    secondRestaurant.save();
+    Restaurant[] restaurants = new Restaurant[] { firstRestaurant, secondRestaurant };
+    assertTrue(testCuisine.getRestaurants().containsAll(Arrays.asList(restaurants)));
+  }
 }

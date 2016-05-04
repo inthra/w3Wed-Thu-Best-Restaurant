@@ -55,4 +55,12 @@ public class Cuisine {
     }
   }
 
+  public List<Restaurant> getRestaurants() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants where cuisine_id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetch(Restaurant.class);
+    }
+  }
 }

@@ -8,9 +8,10 @@ public class Restaurant {
   private String restaurant_description;
   private int cuisine_id;
 
-  public Restaurant(String name, String description) {
+  public Restaurant(String name, String description, int cuisine_id) {
     this.restaurant_name = name;
     this.restaurant_description = description;
+    this.cuisine_id = cuisine_id;
   }
 
   public String getName() {
@@ -44,10 +45,11 @@ public class Restaurant {
 
   public void save(){
     try (Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO restaurants (restaurant_name, restaurant_description) VALUES (:name, :description)";
+      String sql = "INSERT INTO restaurants (restaurant_name, restaurant_description, cuisine_id) VALUES (:name, :description, :cuisine_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name" , this.restaurant_name)
         .addParameter("description", this.restaurant_description)
+        .addParameter("cuisine_id", this.cuisine_id)
         .executeUpdate()
         .getKey();
     }
