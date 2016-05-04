@@ -42,4 +42,11 @@ public class RestaurantTest {
   public void all_RestaurantListIsEmptyFirst() {
     assertEquals(Restaurant.all().size(), 0);
   }
+
+  @Test
+  public void equals_returnsTrueIfNamesAreSame() {
+    Restaurant firstRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    Restaurant secondRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    assertTrue(firstRestaurant.equals(secondRestaurant));
+  }
 }
