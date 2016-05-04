@@ -15,9 +15,19 @@ public class Cuisine {
   }
 
   public static List<Cuisine> all() {
-    String sql = "SELECT id, cuisine_type From cuisines";
+    String sql = "SELECT id, cuisine_type FROM cuisines";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Cuisine.class);
+    }
+  }
+
+  @Override
+  public boolean equals (Object otherCuisine) {
+    if (!(otherCuisine instanceof Cuisine)) {
+      return false;
+    } else {
+      Cuisine newCuisine = (Cuisine) otherCuisine;
+      return this.getType().equals(newCuisine.getType());
     }
   }
 }

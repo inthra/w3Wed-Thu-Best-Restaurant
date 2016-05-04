@@ -35,4 +35,11 @@ public class CuisineTest {
   public void all_CuisineListEmptyAtFirst() {
     assertEquals(Cuisine.all().size(), 0);
   }
+
+  @Test
+  public void equals_returnsTrueIfNamesAreSame() {
+    Cuisine firstType = new Cuisine("BBQ");
+    Cuisine secondType = new Cuisine("BBQ");
+    assertTrue(firstType.equals(secondType));
+  }
 }
