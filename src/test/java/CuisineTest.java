@@ -30,4 +30,9 @@ public class CuisineTest {
     Cuisine testCuisine = new Cuisine("BBQ");
     assertEquals("BBQ", testCuisine.getType());
   }
+
+  @Test
+  public void all_CuisineListEmptyAtFirst() {
+    assertEquals(Cuisine.all().size(), 0);
+  }
 }
