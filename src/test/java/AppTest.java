@@ -50,4 +50,13 @@ public class AppTest extends FluentTest {
     submit(".btn");
     assertThat(pageSource()).contains("Your cuisine has been saved.");
   }
+
+  @Test
+  public void cuisineIsDisplayedTest() {
+    goTo("http://localhost:4567/cuisines/new");
+    fill("#cuisine_type").with("BBQ");
+    submit(".btn");
+    click("a", withText("View cuisines"));
+    assertThat(pageSource()).contains("BBQ");
+  }
 }
