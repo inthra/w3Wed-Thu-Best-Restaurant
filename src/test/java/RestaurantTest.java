@@ -27,8 +27,19 @@ public class RestaurantTest {
   }
 
   @Test
-  public void getName_instantiatesWithNameAndDescription_String() {
+  public void getName_instantiatesWithName_String() {
     Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
     assertEquals("Pit BBQ", testRestaurant.getName());
+  }
+
+  @Test
+  public void getDescription_instantiatesWithDescription_String() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    assertEquals("Tasty smoke", testRestaurant.getDescription());
+  }
+
+  @Test
+  public void all_RestaurantListIsEmptyFirst() {
+    assertEquals(Restaurant.all().size(), 0);
   }
 }

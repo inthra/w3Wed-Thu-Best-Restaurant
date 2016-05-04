@@ -16,4 +16,15 @@ public class Restaurant {
   public String getName() {
     return restaurant_name;
   }
+
+  public String getDescription() {
+    return restaurant_description;
+  }
+
+  public static List<Restaurant> all() {
+    String sql = "SELECT * FROM restaurants";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Restaurant.class);
+    }
+  }
 }
