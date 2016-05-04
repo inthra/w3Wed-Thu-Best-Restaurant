@@ -64,4 +64,12 @@ public class RestaurantTest {
     Restaurant savedRestaurant = Restaurant.all().get(0);
     assertEquals(testRestaurant.getId(), savedRestaurant.getId());
   }
+
+  @Test
+  public void find_findRestaurantInDatabase_true() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    testRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.find(testRestaurant.getId());
+    assertTrue(testRestaurant.equals(savedRestaurant));
+  }
 }
