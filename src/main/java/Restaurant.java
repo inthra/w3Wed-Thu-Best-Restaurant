@@ -21,6 +21,10 @@ public class Restaurant {
     return restaurant_description;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public static List<Restaurant> all() {
     String sql = "SELECT * FROM restaurants";
     try(Connection con = DB.sql2o.open()) {
