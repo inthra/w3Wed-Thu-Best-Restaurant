@@ -25,4 +25,10 @@ public class RestaurantTest {
     Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
     assertTrue(testRestaurant instanceof Restaurant);
   }
+
+  @Test
+  public void getName_instantiatesWithNameAndDescription_String() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    assertEquals("Pit BBQ", testRestaurant.getName());
+  }
 }
