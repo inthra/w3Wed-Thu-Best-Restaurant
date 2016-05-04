@@ -49,4 +49,11 @@ public class RestaurantTest {
     Restaurant secondRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
     assertTrue(firstRestaurant.equals(secondRestaurant));
   }
+
+  @Test
+  public void save_savesIntoDatabase_true() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke");
+    testRestaurant.save();
+    assertTrue(Restaurant.all().get(0).equals(testRestaurant));
+  }
 }

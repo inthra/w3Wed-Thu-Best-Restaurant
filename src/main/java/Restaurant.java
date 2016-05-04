@@ -37,4 +37,15 @@ public class Restaurant {
       return this.getName().equals(newRestaurant.getName()) && this.getDescription().equals(newRestaurant.getDescription());
     }
   }
+
+  public void save(){
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO restaurants (restaurant_name, restaurant_description) VALUES (:name, :description)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name" , this.restaurant_name)
+        .addParameter("description", this.restaurant_description)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }
