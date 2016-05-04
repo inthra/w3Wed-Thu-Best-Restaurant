@@ -14,6 +14,10 @@ public class Cuisine {
     return cuisine_type;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public static List<Cuisine> all() {
     String sql = "SELECT id, cuisine_type FROM cuisines";
     try(Connection con = DB.sql2o.open()) {

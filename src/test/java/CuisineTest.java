@@ -38,9 +38,9 @@ public class CuisineTest {
 
   @Test
   public void equals_returnsTrueIfNamesAreSame() {
-    Cuisine firstType = new Cuisine("BBQ");
-    Cuisine secondType = new Cuisine("BBQ");
-    assertTrue(firstType.equals(secondType));
+    Cuisine firstCuisine = new Cuisine("BBQ");
+    Cuisine secondCuisine = new Cuisine("BBQ");
+    assertTrue(firstCuisine.equals(secondCuisine));
   }
 
   @Test
@@ -48,5 +48,13 @@ public class CuisineTest {
     Cuisine testCuisine = new Cuisine("BBQ");
     testCuisine.save();
     assertTrue(Cuisine.all().get(0).equals(testCuisine));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    Cuisine savedCuisine = Cuisine.all().get(0);
+    assertEquals(testCuisine.getId(), savedCuisine.getId());
   }
 }
