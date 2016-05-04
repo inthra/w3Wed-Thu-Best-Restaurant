@@ -57,4 +57,12 @@ public class CuisineTest {
     Cuisine savedCuisine = Cuisine.all().get(0);
     assertEquals(testCuisine.getId(), savedCuisine.getId());
   }
+
+  @Test
+  public void find_findCuisineInDatabase_true() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    Cuisine savedCuisine = Cuisine.find(testCuisine.getId());
+    assertTrue(testCuisine.equals(savedCuisine));
+  }
 }
