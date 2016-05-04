@@ -8,4 +8,8 @@ public class Cuisine {
   public Cuisine(String cuisine_type) {
     this.cuisine_type = cuisine_type;
   }
+
+  public String getType() {
+    return cuisine_type;
+  }
 }

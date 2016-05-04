@@ -24,4 +24,10 @@ public class CuisineTest {
     Cuisine testCuisine = new Cuisine("BBQ");
     assertTrue(testCuisine instanceof Cuisine);
   }
+
+  @Test
+  public void Cuisine_instantiatesWithCuisineType_String() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    assertEquals("BBQ", testCuisine.getType());
+  }
 }
