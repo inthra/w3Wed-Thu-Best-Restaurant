@@ -85,4 +85,13 @@ public class CuisineTest {
     testCuisine.update("Texas BBQ");
     assertEquals("Texas BBQ", Cuisine.find(testCuisine.getId()).getType());
   }
+
+  @Test
+  public void delete_deletesCuisineType_true() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    int testCuisineId = testCuisine.getId();
+    testCuisine.delete();
+    assertEquals(null, Cuisine.find(testCuisineId));
+  }
 }
