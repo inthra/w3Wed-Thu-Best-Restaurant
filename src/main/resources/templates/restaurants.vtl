@@ -1,0 +1,7 @@
+<h1>All restaurants</h1>
+<ul>
+  #foreach ($restaurant in $restaurants)
+    <li><a href="/restaurants/$restaurant.getId()">$restaurant.getName()</a></li>
+  #end
+</ul>
+<a href="/restaurants/new" class="btn btn-primary">Add New Restaurant</a>

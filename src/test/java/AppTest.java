@@ -107,6 +107,7 @@ public class AppTest extends FluentTest {
     goTo(cuisinePath);
     fill("#cuisine_type").with("Texas BBQ");
     submit("#update-cuisine");
+    assertThat(pageSource()).contains("Texas BBQ");
   }
 
   @Test
@@ -118,5 +119,19 @@ public class AppTest extends FluentTest {
     submit("#delete-cuisine");
     assertEquals(0, Cuisine.all().size());
     assertThat(pageSource()).contains("Your cuisine has been deleted.");
+  }
+
+  @Test
+  public void restaurantUpdate() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", testCuisine.getId());
+    testRestaurant.save();
+    String restaurantPath = String.format("http://localhost:4567/cuisines/%d/restaurants/%d", testCuisine.getId(), testRestaurant.getId());
+    goTo(restaurantPath);
+    fill("#restaurant_name").with("Pit BBQ 2");
+    fill("#restaurant_description").with("Real smokey");
+    submit("#update-restaurant");
+    assertThat(pageSource()).contains("Pit BBQ 2");
   }
 }

@@ -82,5 +82,33 @@ public class App {
       model.put("template", "templates/cuisine-restaurants-success.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/restaurants", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("restaurants", Restaurant.all());
+      model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/cuisines/:cuisine_id/restaurants/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params("id")));
+      String restaurant_name = request.queryParams("restaurant_name");
+      String restaurant_description = request.queryParams("restaurant_description");
+      Cuisine cuisine = Cuisine.find(restaurant.getCuisineId());
+      restaurant.update(restaurant_name, restaurant_description);
+      String url = String.format("/cuisines/%d/restaurants/%d", cuisine.getId(), restaurant.getId());
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/cuisines/:cuisine_id/restaurants/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(request.params(":id")));
+      model.put("restaurant", restaurant);
+      model.put("template", "templates/restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

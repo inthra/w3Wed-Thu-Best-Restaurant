@@ -1,0 +1,13 @@
+<h1>$restaurant.getName()</h1>
+
+<p>Edit restaurant:</p>
+
+<form action="/cuisines/$restaurant.getCuisineId()/restaurants/$restaurant.getId()" method="post">
+  <label for="restaurant_name">Edit restaurant name here:</label>
+  <input id="restaurant_name" name="restaurant_name" type="text" class="form-control">
+  <label for="restaurant_description">Edit restaurant description here:</label>
+  <input id="restaurant_description" name="restaurant_description" type="text" class="form-control">
+  <button type="submit" class="btn btn-success" id="update-restaurant">Update restaurant</button>
+</form>
+
+<a href="/cuisines/$cuisine.getId()">Return to $cuisine.getType()</a>

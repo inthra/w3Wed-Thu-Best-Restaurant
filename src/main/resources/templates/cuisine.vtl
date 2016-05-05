@@ -2,7 +2,7 @@
 
 <ul>
   #foreach($restaurant in $cuisine.getRestaurants())
-  <li>$restaurant.getName(): $restaurant.getDescription()</li>
+  <li><a href="/restaurants">$restaurant.getName(): $restaurant.getDescription()</a></li>
   #end
 </ul>
 
