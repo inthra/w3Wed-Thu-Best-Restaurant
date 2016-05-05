@@ -63,4 +63,14 @@ public class Cuisine {
         .executeAndFetch(Restaurant.class);
     }
   }
+
+  public void update(String cuisine_type) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE cuisines SET cuisine_type = :cuisine_type WHERE id=:id";
+      con.createQuery(sql)
+        .addParameter("cuisine_type", cuisine_type)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }

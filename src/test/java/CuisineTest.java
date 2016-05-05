@@ -77,4 +77,12 @@ public class CuisineTest {
     Restaurant[] restaurants = new Restaurant[] { firstRestaurant, secondRestaurant };
     assertTrue(testCuisine.getRestaurants().containsAll(Arrays.asList(restaurants)));
   }
+
+  @Test
+  public void update_updatesCuisineType_true() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    testCuisine.update("Texas BBQ");
+    assertEquals("Texas BBQ", Cuisine.find(testCuisine.getId()).getType());
+  }
 }
