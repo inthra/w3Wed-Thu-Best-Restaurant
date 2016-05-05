@@ -91,4 +91,13 @@ public class RestaurantTest {
     assertEquals("Tasty smoke", Restaurant.find(testRestaurant.getId()).getDescription());
   }
 
+  @Test
+  public void delete_deletesRestaurantNameAndDesctription_true() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", 1);
+    testRestaurant.save();
+    int testRestaurantId = testRestaurant.getId();
+    testRestaurant.delete();
+    assertEquals(null, Restaurant.find(testRestaurantId));
+  }
+
 }
