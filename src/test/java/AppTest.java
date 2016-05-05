@@ -3,6 +3,7 @@ import org.junit.*; // for @Before and @After
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.ClassRule;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -106,5 +107,16 @@ public class AppTest extends FluentTest {
     goTo(cuisinePath);
     fill("#cuisine_type").with("Texas BBQ");
     submit("#update-cuisine");
+  }
+
+  @Test
+  public void cuisineDelete() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    String cuisinePath = String.format("http://localhost:4567/cuisines/%d", testCuisine.getId());
+    goTo(cuisinePath);
+    submit("#delete-cuisine");
+    assertEquals(0, Cuisine.all().size());
+    assertThat(pageSource()).contains("Your cuisine has been deleted.");
   }
 }
