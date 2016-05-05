@@ -97,4 +97,14 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Pit BBQ");
     assertThat(pageSource()).contains("Tasty smoke");
   }
+
+  @Test
+  public void cuisineUpdate() {
+    Cuisine testCuisine = new Cuisine("BBQ");
+    testCuisine.save();
+    String cuisinePath = String.format("http://localhost:4567/cuisines/%d", testCuisine.getId());
+    goTo(cuisinePath);
+    fill("#cuisine_type").with("Texas BBQ");
+    submit("#update-cuisine");
+  }
 }

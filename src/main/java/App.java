@@ -37,6 +37,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/cuisines/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params("id")));
+      String cuisine_type = request.queryParams("cuisine_type");
+      cuisine.update(cuisine_type);
+      String url = String.format("/cuisines/%d", cuisine.getId());
+      response.redirect(url);
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/cuisines/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));

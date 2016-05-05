@@ -7,4 +7,13 @@
 </ul>
 
 <a href="/cuisines/$cuisine.getId()/restaurants/new" class="btn btn-primary">Add a new restaurant</a>
+
+<p>Edit cuisine:</p>
+
+<form action="/cuisines/$cuisine.getId()" method="post">
+  <label for="cuisine_type">Edit cuisine here:</label>
+  <input id="cuisine_type" name="cuisine_type" type="text">
+  <button type="submit" class="btn btn-success" id="update-cuisine">Update Cuisine</button>
+</form>
+
 <a href="/cuisines" class="btn btn-primary">View cuisines</a>
