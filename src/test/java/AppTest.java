@@ -59,4 +59,14 @@ public class AppTest extends FluentTest {
     click("a", withText("View cuisines"));
     assertThat(pageSource()).contains("BBQ");
   }
+
+  @Test
+  public void cuisineShowPageDisplaysCuisineType() {
+    goTo("http://localhost:4567/cuisines/new");
+    fill("#cuisine_type").with("BBQ");
+    submit(".btn");
+    click("a", withText("View cuisines"));
+    click("a", withText("BBQ"));
+    assertThat(pageSource()).contains("BBQ");
+  }
 }

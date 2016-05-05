@@ -37,14 +37,14 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/cuisines/:id", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
-    //   model.put("cuisine", cuisine);
-    //   model.put("template", "templates/cuisine.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-    //
+    get("/cuisines/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
+      model.put("cuisine", cuisine);
+      model.put("template", "templates/cuisine.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     // get("cuisines/:id/restaurants/new", (request, response) -> {
     //   Map<String, Object> model = new HashMap<String, Object>();
     //   Cuisine cuisine = Cuisine.find(Integer.parseInt(request.params(":id")));
