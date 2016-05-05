@@ -64,4 +64,15 @@ public class Restaurant {
       return restaurant;
     }
   }
+
+  public void update(String restaurant_name, String restaurant_description) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, restaurant_description = :restaurant_description WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("restaurant_name", restaurant_name)
+        .addParameter("restaurant_description", restaurant_description)
+        .addParameter("id", this.getId())
+        .executeUpdate();
+    }
+  }
 }

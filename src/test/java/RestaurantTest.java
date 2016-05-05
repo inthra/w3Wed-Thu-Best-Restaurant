@@ -73,13 +73,13 @@ public class RestaurantTest {
     assertTrue(testRestaurant.equals(savedRestaurant));
   }
 
-  // @Test
-  // public void update_updatesRestaurantNameAndDescription_true() {
-  //   Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", 1);
-  //   testRestaurant.save();
-  //   testRestaurant.update("Pit BBQ 2", "Real smokey");
-  //   assertEquals("Pit BBQ 2", Restaurant.find(testRestaurant.getId()).getName());
-  //   assertEquals("Real smokey", Restaurant.find(testRestaurant.getId()).getDescription());
-  // }
+  @Test
+  public void update_updatesRestaurantNameAndDescription_true() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", 1);
+    testRestaurant.save();
+    testRestaurant.update("Pit BBQ 2", "Real smokey");
+    assertEquals("Pit BBQ 2", Restaurant.find(testRestaurant.getId()).getName());
+    assertEquals("Real smokey", Restaurant.find(testRestaurant.getId()).getDescription());
+  }
 
 }
