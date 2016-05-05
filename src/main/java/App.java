@@ -53,15 +53,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // post("/restaurants", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   Cuisine cuisine = Cuisine.find(Integer.parseInt(request.queryParams("cuisine_id")));
-    //   String restaurant_name = request.queryParams("restaurant_name");
-    //   Restaurant newRestaurant = new Restaurant(restaurant_name);
-    //   cuisine.addRestaurant(newRestaurant);
-    //   model.put("cuisine", cuisine);
-    //   model.put("template", "templates/cuisine-restaurants-success.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    post("/restaurants", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      Cuisine cuisine = Cuisine.find(Integer.parseInt(request.queryParams("cuisine_id")));
+      String restaurant_name = request.queryParams("restaurant_name");
+      String restaurant_description = request.queryParams("restaurant_description");
+      Restaurant newRestaurant = new Restaurant(restaurant_name, restaurant_description, cuisine.getId());
+      newRestaurant.save();
+      model.put("cuisine", cuisine);
+      model.put("template", "templates/cuisine-restaurants-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
