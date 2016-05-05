@@ -82,4 +82,13 @@ public class RestaurantTest {
     assertEquals("Real smokey", Restaurant.find(testRestaurant.getId()).getDescription());
   }
 
+  @Test
+  public void update_updatesRestaurantNameOrDescription_true() {
+    Restaurant testRestaurant = new Restaurant("Pit BBQ", "Tasty smoke", 1);
+    testRestaurant.save();
+    testRestaurant.update("Pit BBQ 2", null);
+    assertEquals("Pit BBQ 2", Restaurant.find(testRestaurant.getId()).getName());
+    assertEquals("Tasty smoke", Restaurant.find(testRestaurant.getId()).getDescription());
+  }
+
 }

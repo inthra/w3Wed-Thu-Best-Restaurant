@@ -66,13 +66,23 @@ public class Restaurant {
   }
 
   public void update(String restaurant_name, String restaurant_description) {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name, restaurant_description = :restaurant_description WHERE id = :id";
-      con.createQuery(sql)
-        .addParameter("restaurant_name", restaurant_name)
-        .addParameter("restaurant_description", restaurant_description)
-        .addParameter("id", this.getId())
-        .executeUpdate();
+    if (restaurant_name != null) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE restaurants SET restaurant_name = :restaurant_name WHERE id = :id";
+        con.createQuery(sql)
+          .addParameter("restaurant_name", restaurant_name)
+          .addParameter("id", this.getId())
+          .executeUpdate();
+      }
+    }
+    if (restaurant_description != null) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "UPDATE restaurants SET restaurant_description = :restaurant_description WHERE id = :id";
+        con.createQuery(sql)
+          .addParameter("restaurant_description", restaurant_description)
+          .addParameter("id", this.getId())
+          .executeUpdate();
+      }
     }
   }
 }
