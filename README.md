@@ -1,8 +1,8 @@
-# _APP NAME_
+# _Best Restaurant_
 
-#### _Short overview of app, April 22, 2016_
+#### _Short overview of app, April 5, 2016_
 
-#### By _**Nick Lyman**_
+#### By _**Nick Lyman, Inthrayuth Mahaphol_
 
 ## Description
 
@@ -40,4 +40,4 @@ _If a bug is found, please let me know via Github. Feel free to contact me with 
 
 *This software is licensed under the MIT license*
 
-Copyright (c) 2016 **_Nick Lyman_**
+Copyright (c) 2016
